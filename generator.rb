@@ -34,7 +34,7 @@ time = Benchmark.realtime do
                         postal_codes[random_code].sample,
                         rand(50),
                         rand(50),
-                        "+375-#{phone_codes.sample}-#{rand(100..999)}-#{rand(10..99)}-#{rand(10..99)}}"])
+                        "+375-#{phone_codes.sample}-#{rand(100..999)}-#{rand(10..99)}-#{rand(10..99)}"])
       break if a.length == all_count
     end
     break if a.length == all_count
