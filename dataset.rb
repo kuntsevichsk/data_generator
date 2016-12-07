@@ -1,6 +1,7 @@
 class DataSet
   attr_accessor :first_name, :last_name, :street, :street_number,
-                :apt_number, :city, :postal_code, :phone, :country
+                :apt_number, :city, :postal_code, :phone, :country,
+                :full_string
 
   def initialize(array)
     @first_name = array[0]
@@ -12,9 +13,10 @@ class DataSet
     @postal_code = array[6]
     @country = array[7]
     @phone = array[8]
+    @full_string = "#{first_name} #{last_name}; #{street}, #{street_number}, #{apt_number}, #{city}, #{postal_code}, #{country}; #{phone}"
   end
 
   def to_s
-    "#{first_name} #{last_name}; #{street}, #{street_number}, #{apt_number}, #{city}, #{postal_code}, #{country}; #{phone}"
+    full_string
   end
 end
