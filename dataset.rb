@@ -14,6 +14,6 @@ class DataSet
   end
 
   def to_s
-    "#{first_name} #{last_name} г. #{city} #{postal_code} ул. #{street} #{street_number}, кв. #{apt_number} #{phone}"
+    "#{first_name} #{last_name}; #{city} #{postal_code} ул. #{street} #{street_number}, кв. #{apt_number}; #{phone}"
   end
 end

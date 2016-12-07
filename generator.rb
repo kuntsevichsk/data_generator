@@ -17,10 +17,8 @@ time = Benchmark.realtime do
   error_count = ARGV[2].to_i
   country = ARGV[0]
 
-  data = YAML.load_file("#{country}/adress.yml")
-  men_first_names = YAML.load_file("#{country}/men_first_names.yml")['names']
-  women_first_names = YAML.load_file("#{country}/women_first_names.yml")['names']
-  all_names = men_first_names + women_first_names
+  data = YAML.load_file("#{country}/address.yml")
+  all_names = YAML.load_file("#{country}/all_names.yml")['names']
   last_names = YAML.load_file("#{country}/last_names.yml")['names']
   phone_codes = YAML.load_file("#{country}/phone_codes.yml")['codes']
 
