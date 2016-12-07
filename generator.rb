@@ -16,13 +16,13 @@ time = Benchmark.realtime do
   all_count = ARGV[1].to_i
   error_count = ARGV[2].to_i
   country = ARGV[0]
-
+#  all = all_count
   data = YAML.load_file("#{country}/address.yml")
   all_names = YAML.load_file("#{country}/all_names.yml")['names']
   last_names = YAML.load_file("#{country}/last_names.yml")['names']
   phone_codes = YAML.load_file("#{country}/phone_codes.yml")['codes']
 
-  def phone(country)
+  def phone(country, phone_codes)
     if country=='us'
       return "+1-#{rand(200..999)}-#{rand(100..999)}-#{rand(1000..9999)}"
     elsif country=='ru'
@@ -32,24 +32,33 @@ time = Benchmark.realtime do
     end
   end
 
-
-  1.upto(all_count).each do |_idx|
-    data.each do |city, postal_codes|
-      random_code = postal_codes.keys.sample
-      a << DataSet.new([all_names.sample,
-                        last_names.sample,
-                        city,
-                        random_code,
-                        postal_codes[random_code].sample,
-                        rand(50),
-                        rand(50),
-                        phone(country)])
-      break if a.length == all_count
+  def country(country)
+    if country=='us'
+      return "USA"
+    elsif country=='ru'
+      return "Россия"
+    elsif country=='by'
+      return "Беларусь"
     end
-    break if a.length == all_count
   end
 
-end
+    1.upto(all_count).each do |_idx|
+      data.each do |city, postal_codes|
+        random_code = postal_codes.keys.sample
+        a << DataSet.new([all_names.sample,
+                          last_names.sample,
+                          postal_codes[random_code].sample,
+                          rand(50),
+                          rand(50),
+                          city,
+                          random_code,
+                          country(country),
+                          phone(country, phone_codes)])
+        break if a.length == all_count
+      end
+      break if a.length == all_count
+    end
+  end
 
 puts a
 puts "#{time*1000} miliseconds for #{a.length} objects"
