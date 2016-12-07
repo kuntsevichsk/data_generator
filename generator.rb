@@ -25,10 +25,13 @@ time = Benchmark.realtime do
   def phone(country)
     if country=='us'
       return "+1-#{rand(200..999)}-#{rand(100..999)}-#{rand(1000..9999)}"
-    if country=="ru"
+    elsif country=='ru'
       return "+7-#{phone_codes.sample}-#{rand(100..999)}-#{rand(10..99)}-#{rand(10..99)}"
-    if country=='by'
+    elsif country=='by'
       return "+375-#{phone_codes.sample}-#{rand(100..999)}-#{rand(10..99)}-#{rand(10..99)}"
+    end
+  end
+
 
   1.upto(all_count).each do |_idx|
     data.each do |city, postal_codes|
