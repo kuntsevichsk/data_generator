@@ -35,7 +35,7 @@ time = Benchmark.realtime do
   end
 
 
-  def generate_error!(x)
+  def generate_error(x)
     string_size = x.size
     rand_symbol_num = rand(1..(string_size - 1))
 
@@ -49,6 +49,7 @@ time = Benchmark.realtime do
       when 2
         x = x.insert(rand_symbol_num, x[rand(string_size - 1)])
     end
+    x
   end
 
     1.upto(all_count).each do |_idx|
@@ -67,11 +68,11 @@ time = Benchmark.realtime do
 
         if error_per_object_count > 1
           1.upto(error_per_object_count) do |_index|
-            generate_error!(d.full_string)
+            d.full_string = generate_error(d.full_string)
           end
         elsif error_objects_to_generate != 0
           error_objects_to_generate -= 1
-          generate_error!(d.full_string)
+          d.full_string = generate_error(d.full_string)
         end
 
         a << d
